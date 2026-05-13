@@ -15,157 +15,253 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #f8fafc 0%, #f0f5fa 50%, #faf8f5 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 32px 16px;
         }
 
         .container {
-            max-width: 600px;
-            text-align: center;
+            max-width: 640px;
+            margin: 0 auto;
         }
 
-        .success-card {
-            background: white;
-            border-radius: 16px;
-            padding: 48px 32px;
-            box-shadow: 0 8px 24px rgba(0, 80, 48, 0.12);
-            border: 2px solid #005030;
-        }
-
-        .checkmark {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
+        .banner {
+            height: 128px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 32px;
             background: linear-gradient(135deg, #005030 0%, #F47321 100%);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            animation: slideDown 0.6s ease-out;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 80, 48, 0.1);
         }
 
-        h1 {
-            font-size: 32px;
-            color: #005030;
-            margin-bottom: 16px;
+        .banner::before {
+            content: '';
+            position: absolute;
+            width: 256px;
+            height: 256px;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: white;
+            top: -80px;
+            left: -80px;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            width: 192px;
+            height: 192px;
+            border-radius: 50%;
+            opacity: 0.15;
+            background: white;
+            bottom: -40px;
+            right: -40px;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+        }
+
+        .banner-content p:first-child {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .banner-content p:last-child {
+            font-size: 18px;
             font-weight: 700;
         }
 
-        .subtitle {
-            font-size: 16px;
-            color: #4b5563;
-            line-height: 1.6;
+        .header {
             margin-bottom: 32px;
         }
 
-        .details {
+        .header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #005030;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .info-section {
             background: #f9f9f9;
+            border-left: 4px solid #005030;
             border-radius: 12px;
             padding: 24px;
             margin-bottom: 32px;
-            border-left: 4px solid #F47321;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        .details p {
+        .info-section h2 {
+            font-size: 16px;
+            color: #005030;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .info-section p {
             font-size: 14px;
             color: #4b5563;
-            margin-bottom: 12px;
             line-height: 1.6;
+            margin-bottom: 12px;
         }
 
-        .details p:last-child {
+        .info-section p:last-child {
             margin-bottom: 0;
         }
 
-        .details strong {
-            color: #005030;
-        }
-
-        .back-button {
-            display: inline-block;
-            background: #005030;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
+        .highlight {
+            color: #F47321;
             font-weight: 600;
-            transition: all 0.2s;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
         }
 
-        .back-button:hover {
-            background: #003d23;
+        .success-box {
+            background: linear-gradient(135deg, rgba(0, 80, 48, 0.05) 0%, rgba(244, 115, 33, 0.05) 100%);
+            border: 2px solid #005030;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .checkmark {
+            font-size: 48px;
+            margin-bottom: 16px;
+            animation: bounce 0.6s ease-out;
+        }
+
+        .success-box h2 {
+            font-size: 24px;
+            color: #005030;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .success-box p {
+            font-size: 14px;
+            color: #4b5563;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .button {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .button-primary {
+            background-color: #005030;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: #003d23;
             box-shadow: 0 4px 12px rgba(0, 80, 48, 0.2);
-            transform: translateY(-2px);
         }
 
         .signature {
-            margin-top: 48px;
-            padding-top: 24px;
             border-top: 1px solid #e2e8f0;
-            font-size: 12px;
+            padding-top: 12px;
             color: #6b7280;
+            font-size: 12px;
+            text-align: center;
         }
 
         .signature p {
             margin: 4px 0;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
+        @keyframes bounce {
+            0% {
+                transform: scale(0.5);
                 opacity: 0;
             }
-            to {
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
                 opacity: 1;
             }
-        }
-
-        .container {
-            animation: fadeIn 0.6s ease-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="success-card">
-            <div class="checkmark">✓</div>
-            
-            <h1>Feedback Received!</h1>
-            
-            <p class="subtitle">
-                Your schedule feedback has been <strong>successfully submitted</strong>. Thank you for taking the time to share your thoughts with us.
-            </p>
-
-            <div class="details">
-                <p><strong>What happens next?</strong></p>
-                <p>We've received your feedback and we're reviewing all submissions carefully. Shanice and Mashli will work through all requests to see what can be accommodated while balancing program requirements and ACGME regulations.</p>
-                <p style="margin-top: 16px; font-size: 13px; color: #6b7280;">If we have any questions about your request, we'll reach out to you directly.</p>
+        <!-- Banner -->
+        <div class="banner">
+            <div class="banner-content">
+                <p>UMH/JMH Internal Medicine Residency</p>
+                <p>Your Voice Matters</p>
             </div>
+        </div>
 
-            <button class="back-button" onclick="window.location.href='/'">
+        <!-- Header -->
+        <div class="header">
+            <h1>Thank You!</h1>
+            <p>Your feedback has been received and we truly appreciate it.</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-box">
+            <div class="checkmark">✓</div>
+            <h2>Feedback Sent Successfully</h2>
+            <p>We've received your schedule feedback and we're grateful for taking the time to share your thoughts with us.</p>
+        </div>
+
+        <!-- What Happens Next -->
+        <div class="info-section">
+            <h2>What Happens Next?</h2>
+            <p>Your feedback is important to us. Shanice and Mashli will carefully review all submissions to understand your concerns, scheduling conflicts, and requested changes. We're committed to working with you while also balancing program requirements and ACGME regulations.</p>
+            
+            <p style="margin-top: 16px;">If your request can be accommodated, we'll let you know. If we have questions about your submission or need more information, <span class="highlight">we'll reach out to you directly</span> at the email address you provided.</p>
+            
+            <p style="margin-top: 16px; font-size: 13px; color: #6b7280;">All feedback submissions are reviewed fairly and thoughtfully. We're building a program that works for everyone.</p>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="info-section">
+            <p style="font-size: 13px; color: #6b7280;"><strong>Did you forget something?</strong> If you need to submit additional feedback or make changes, you can always come back and fill out the form again. We'll see your updates.</p>
+        </div>
+
+        <!-- Button to go back -->
+        <div class="button-group">
+            <button class="button button-primary" onclick="window.location.href='/'">
                 ← Back to Schedule Feedback Form
             </button>
+        </div>
 
-            <div class="signature">
-                <p>UMH/JMH Internal Medicine Residency</p>
-                <p>Shanice and Mashli, Jackson Chiefs, AY 2026-2027</p>
-            </div>
+        <!-- Signature -->
+        <div class="signature">
+            <p>Shanice and Mashli</p>
+            <p>Jackson Chiefs, AY 2026-2027</p>
         </div>
     </div>
 </body>
