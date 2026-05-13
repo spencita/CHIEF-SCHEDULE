@@ -356,25 +356,24 @@
         </div>
 
         <!-- Formspree Error Message -->
-        <div data-fs-error style="display: none; background: #ffebee; border-left: 4px solid #c62828; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: #b71c1c;">
+        <div id="formError" style="display: none; background: #ffebee; border-left: 4px solid #c62828; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: #b71c1c;">
             <p style="margin: 0; font-size: 14px;">There was an error submitting your form. Please try again.</p>
         </div>
 
         <!-- Form -->
-        <form class="form-container" id="feedbackForm">
+        <form class="form-container" id="feedbackForm" action="https://formspree.io/f/mojrzjel" method="POST">
             <!-- Formspree redirect to thank you page -->
             <input type="hidden" name="_next" value="https://scheduling-feedback.vercel.app/thank-you.html">
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
-                <input type="email" id="email" name="email" placeholder="your.email@example.com" required data-fs-field>
-                <span data-fs-error="email" class="error"></span>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
             </div>
 
             <!-- Name -->
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="First and last name" data-fs-field>
+                <input type="text" id="name" name="name" placeholder="First and last name">
             </div>
 
             <!-- PGY Level -->
@@ -382,38 +381,40 @@
                 <label>Your PGY Level <span class="required">*</span></label>
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="pgyYear" value="PGY-2" required data-fs-field>
+                        <input type="radio" name="pgyYear" value="PGY-2" required>
                         <span>Rising PGY-2</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="pgyYear" value="PGY-3" required data-fs-field>
+                        <input type="radio" name="pgyYear" value="PGY-3" required>
                         <span>Rising PGY-3</span>
                     </label>
                 </div>
-                <span data-fs-error="pgyYear" class="error"></span>
             </div>
 
             <!-- Request Period -->
             <div class="form-group">
                 <label for="requestPeriod">Which Period(s)? <span class="accent-arrow">→</span></label>
-                <input type="text" id="requestPeriod" name="requestPeriod" placeholder="e.g., Period 3, Period 7, etc. (or leave blank if not specific to a period)" data-fs-field>
+                <input type="text" id="requestPeriod" name="requestPeriod" placeholder="e.g., Period 3, Period 7, etc. (or leave blank if not specific to a period)">
             </div>
 
             <!-- Reasoning -->
             <div class="form-group">
                 <label for="reasoning">Tell Us More <span class="accent-arrow">→</span></label>
-                <textarea id="reasoning" name="reasoning" placeholder="What's the issue? What change are you hoping for? The more detail, the better we can understand your needs." data-fs-field></textarea>
+                <textarea id="reasoning" name="reasoning" placeholder="What's the issue? What change are you hoping for? The more detail, the better we can understand your needs."></textarea>
             </div>
 
             <!-- General Comments -->
             <div class="form-group">
                 <label for="generalRequest">Anything Else? <span class="accent-arrow">→</span></label>
-                <textarea id="generalRequest" name="generalRequest" placeholder="General questions, comments, or concerns about your schedule that don't fit above—we'd like to hear them." data-fs-field></textarea>
+                <textarea id="generalRequest" name="generalRequest" placeholder="General questions, comments, or concerns about your schedule that don't fit above—we'd like to hear them."></textarea>
             </div>
+
+            <!-- Hidden redirect field -->
+            <input type="hidden" name="_next" value="https://scheduling-feedback.vercel.app/thank-you.html">
 
             <!-- Buttons -->
             <div class="button-group">
-                <button type="submit" class="submit-btn" data-fs-submit-btn>
+                <button type="submit" class="submit-btn">
                     ✓ Submit Your Feedback
                 </button>
                 <button type="button" class="clear-btn" onclick="document.getElementById('feedbackForm').reset();">
@@ -425,11 +426,7 @@
         </form>
     </div>
 
-    <!-- Formspree Script -->
-    <script>
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { formElement: '#feedbackForm', formId: 'mojrzjel' });
-    </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+    <!-- No scripts needed - basic form submission handles everything -->
+
 </body>
 </html>
