@@ -349,10 +349,10 @@
             <p style="border-top: 1px solid #cbd5e1; padding-top: 12px; margin-top: 12px; color: #6b7280; font-size: 12px;">Shanice and Mashli, Jackson Chiefs, AY 2026-2027</p>
         </div>
 
-        <!-- Formspree Success Message -->
-        <div data-fs-success class="success-message" style="display: none; background: #E8F5E9; border-radius: 8px; padding: 16px; margin-bottom: 24px; border-left: 4px solid #005030;">
-            <h3 style="color: #005030; font-size: 14px; margin-bottom: 4px;">✓ Feedback Sent!</h3>
-            <p style="color: #2d5016; font-size: 13px; margin: 0;">Your feedback has been successfully submitted and received. Thank you for taking the time to share your thoughts with us. We'll review everything carefully.</p>
+        <!-- Success Message -->
+        <div id="successMessage" class="success-message" style="display: none;">
+            <h3>✓ Feedback Sent!</h3>
+            <p>Your feedback has been successfully submitted and received. Thank you for taking the time to share your thoughts with us. We'll review everything carefully.</p>
         </div>
 
         <!-- Formspree Error Message -->
@@ -361,7 +361,7 @@
         </div>
 
         <!-- Form -->
-        <form class="form-container" id="feedbackForm" action="https://formspree.io/f/mojrzjel" method="POST">
+        <form class="form-container" id="feedbackForm">
             <!-- Formspree redirect to thank you page -->
             <input type="hidden" name="_next" value="https://scheduling-feedback.vercel.app/thank-you.html">
             <!-- Email -->
