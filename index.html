@@ -349,10 +349,15 @@
             <p style="border-top: 1px solid #cbd5e1; padding-top: 12px; margin-top: 12px; color: #6b7280; font-size: 12px;">Shanice and Mashli, Jackson Chiefs, AY 2026-2027</p>
         </div>
 
-        <!-- Success Message -->
-        <div class="success-message" id="successMessage">
-            <h3>✓ Feedback Sent!</h3>
-            <p>Your feedback has been successfully submitted and received. Thank you for taking the time to share your thoughts with us. We'll review everything carefully.</p>
+        <!-- Formspree Success Message -->
+        <div data-fs-success class="success-message" style="display: none; background: #E8F5E9; border-radius: 8px; padding: 16px; margin-bottom: 24px; border-left: 4px solid #005030;">
+            <h3 style="color: #005030; font-size: 14px; margin-bottom: 4px;">✓ Feedback Sent!</h3>
+            <p style="color: #2d5016; font-size: 13px; margin: 0;">Your feedback has been successfully submitted and received. Thank you for taking the time to share your thoughts with us. We'll review everything carefully.</p>
+        </div>
+
+        <!-- Formspree Error Message -->
+        <div data-fs-error style="display: none; background: #ffebee; border-left: 4px solid #c62828; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: #b71c1c;">
+            <p style="margin: 0; font-size: 14px;">There was an error submitting your form. Please try again.</p>
         </div>
 
         <!-- Form -->
@@ -360,14 +365,14 @@
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
-                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                <div class="error" id="emailError"></div>
+                <input type="email" id="email" name="email" placeholder="your.email@example.com" required data-fs-field>
+                <span data-fs-error="email" class="error"></span>
             </div>
 
             <!-- Name -->
             <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="First and last name">
+                <input type="text" id="name" name="name" placeholder="First and last name" data-fs-field>
             </div>
 
             <!-- PGY Level -->
@@ -375,41 +380,41 @@
                 <label>Your PGY Level <span class="required">*</span></label>
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="pgyYear" value="PGY-2" required>
+                        <input type="radio" name="pgyYear" value="PGY-2" required data-fs-field>
                         <span>Rising PGY-2</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="pgyYear" value="PGY-3" required>
+                        <input type="radio" name="pgyYear" value="PGY-3" required data-fs-field>
                         <span>Rising PGY-3</span>
                     </label>
                 </div>
-                <div class="error" id="pgyError"></div>
+                <span data-fs-error="pgyYear" class="error"></span>
             </div>
 
             <!-- Request Period -->
             <div class="form-group">
                 <label for="requestPeriod">Which Period(s)? <span class="accent-arrow">→</span></label>
-                <input type="text" id="requestPeriod" name="requestPeriod" placeholder="e.g., Period 3, Period 7, etc. (or leave blank if not specific to a period)">
+                <input type="text" id="requestPeriod" name="requestPeriod" placeholder="e.g., Period 3, Period 7, etc. (or leave blank if not specific to a period)" data-fs-field>
             </div>
 
             <!-- Reasoning -->
             <div class="form-group">
                 <label for="reasoning">Tell Us More <span class="accent-arrow">→</span></label>
-                <textarea id="reasoning" name="reasoning" placeholder="What's the issue? What change are you hoping for? The more detail, the better we can understand your needs."></textarea>
+                <textarea id="reasoning" name="reasoning" placeholder="What's the issue? What change are you hoping for? The more detail, the better we can understand your needs." data-fs-field></textarea>
             </div>
 
             <!-- General Comments -->
             <div class="form-group">
                 <label for="generalRequest">Anything Else? <span class="accent-arrow">→</span></label>
-                <textarea id="generalRequest" name="generalRequest" placeholder="General questions, comments, or concerns about your schedule that don't fit above—we'd like to hear them."></textarea>
+                <textarea id="generalRequest" name="generalRequest" placeholder="General questions, comments, or concerns about your schedule that don't fit above—we'd like to hear them." data-fs-field></textarea>
             </div>
 
             <!-- Buttons -->
             <div class="button-group">
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn" data-fs-submit-btn>
                     ✓ Submit Your Feedback
                 </button>
-                <button type="button" class="clear-btn" onclick="document.getElementById('feedbackForm').reset(); document.getElementById('successMessage').classList.remove('show');">
+                <button type="button" class="clear-btn" onclick="document.getElementById('feedbackForm').reset();">
                     Clear
                 </button>
             </div>
@@ -418,64 +423,11 @@
         </form>
     </div>
 
+    <!-- Formspree Script -->
     <script>
-        document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const email = document.getElementById('email').value.trim();
-            const pgyYear = document.querySelector('input[name="pgyYear"]:checked');
-
-            let isValid = true;
-
-            if (!email) {
-                document.getElementById('emailError').textContent = 'Email is required';
-                isValid = false;
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                document.getElementById('emailError').textContent = 'Please enter a valid email';
-                isValid = false;
-            } else {
-                document.getElementById('emailError').textContent = '';
-            }
-
-            if (!pgyYear) {
-                document.getElementById('pgyError').textContent = 'Please select your PGY year';
-                isValid = false;
-            } else {
-                document.getElementById('pgyError').textContent = '';
-            }
-
-            if (!isValid) return;
-
-            const formData = {
-                email: document.getElementById('email').value,
-                name: document.getElementById('name').value,
-                pgyYear: document.querySelector('input[name="pgyYear"]:checked').value,
-                requestPeriod: document.getElementById('requestPeriod').value,
-                reasoning: document.getElementById('reasoning').value,
-                generalRequest: document.getElementById('generalRequest').value
-            };
-
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHH77BO555E3i6Vo7a8VS9dGSr7ikSkpZ6CiTOwlHnvXZQbUKnPpnJXIEbcszPKm05/exec';
-
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify(formData)
-                });
-
-                document.getElementById('successMessage').classList.add('show');
-                document.getElementById('feedbackForm').reset();
-
-                setTimeout(() => {
-                    document.getElementById('successMessage').classList.remove('show');
-                }, 3000);
-
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your form. Please try again.');
-            }
-        });
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#feedbackForm', formId: 'mojrzjel' });
     </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
