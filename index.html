@@ -219,12 +219,6 @@
             font-weight: 500;
         }
 
-        .error {
-            color: #dc2626;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
         .button-group {
             display: flex;
             gap: 12px;
@@ -273,43 +267,6 @@
             text-align: center;
             margin-top: 16px;
         }
-
-        .success-message {
-            display: none;
-            background: #E8F5E9;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-            border-left: 4px solid #005030;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.3s ease-in;
-        }
-
-        .success-message h3 {
-            color: #005030;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .success-message p {
-            color: #2d5016;
-            font-size: 13px;
-            margin: 0;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -349,21 +306,11 @@
             <p style="border-top: 1px solid #cbd5e1; padding-top: 12px; margin-top: 12px; color: #6b7280; font-size: 12px;">Shanice and Mashli, Jackson Chiefs, AY 2026-2027</p>
         </div>
 
-        <!-- Success Message -->
-        <div id="successMessage" class="success-message" style="display: none;">
-            <h3>✓ Feedback Sent!</h3>
-            <p>Your feedback has been successfully submitted and received. Thank you for taking the time to share your thoughts with us. We'll review everything carefully.</p>
-        </div>
-
-        <!-- Formspree Error Message -->
-        <div id="formError" style="display: none; background: #ffebee; border-left: 4px solid #c62828; border-radius: 8px; padding: 16px; margin-bottom: 24px; color: #b71c1c;">
-            <p style="margin: 0; font-size: 14px;">There was an error submitting your form. Please try again.</p>
-        </div>
-
         <!-- Form -->
-        <form class="form-container" id="feedbackForm">
-            <!-- Formspree redirect to thank you page -->
+        <form class="form-container" action="https://formspree.io/f/mojrzjel" method="POST">
+            <!-- Redirect to thank you page after submission -->
             <input type="hidden" name="_next" value="https://scheduling-feedback.vercel.app/thank-you.html">
+
             <!-- Email -->
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
@@ -409,15 +356,12 @@
                 <textarea id="generalRequest" name="generalRequest" placeholder="General questions, comments, or concerns about your schedule that don't fit above—we'd like to hear them."></textarea>
             </div>
 
-            <!-- Hidden redirect field -->
-            <input type="hidden" name="_next" value="https://scheduling-feedback.vercel.app/thank-you.html">
-
             <!-- Buttons -->
             <div class="button-group">
                 <button type="submit" class="submit-btn">
                     ✓ Submit Your Feedback
                 </button>
-                <button type="button" class="clear-btn" onclick="document.getElementById('feedbackForm').reset();">
+                <button type="reset" class="clear-btn">
                     Clear
                 </button>
             </div>
@@ -425,8 +369,5 @@
             <p class="footer-text">Your responses are saved as you type. Thank you for your feedback.</p>
         </form>
     </div>
-
-    <!-- No scripts needed - basic form submission handles everything -->
-
 </body>
 </html>
